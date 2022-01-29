@@ -1,18 +1,31 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <login-dialog :loginDialogVisible="loginDialogVisible" @closeLogin="closeWindow"></login-dialog>
+    <feed :rule="feed_rule"></feed>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import feed from "@/components/feed.vue";
+import loginDialog from "../components/ui/loginDialog.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    HelloWorld
+    feed,
+    loginDialog,
+  },
+  data() {
+    return {
+      feed_rule: true,
+      loginDialogVisible: true,
+
+    };
+  },
+  methods:{
+    closeWindow() {
+      this.loginDialogVisible = false;
+    },
   }
-}
+};
 </script>
