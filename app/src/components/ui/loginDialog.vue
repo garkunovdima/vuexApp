@@ -36,7 +36,6 @@
 
 <script>
 import myInput from "@/components/ui/myInput.vue";
-import { users } from "@/App.vue";
 
 export default {
   name: "myDialog",
@@ -46,7 +45,12 @@ export default {
   },
   components: { myInput },
   data() {
-    return { users };
+    return {  };
+  },
+  computed:{
+    users(){
+      return this.$store.state.users;
+    }
   },
   methods: {
     closeWindow() {

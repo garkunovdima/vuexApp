@@ -76,32 +76,49 @@
         </button>
       </div>
     </div>
-    <my-dialog
-      class="text-start"
-      :user="reg"
-      :dialogVisible="dialogVisible"
-      @closeRegDialog="closeWindow"
-      @acceptRegDialog="doReg"
-    ></my-dialog>
+    <dialog-window :dialogVisible="dialogVisible">
+      <template #def>
+        <div
+          class="
+            dialog_window_bg
+            d-flex
+            flex-column
+            justify-content-center
+            align-items-center
+          "
+        >
+          <div class="post-shadow px-3 py-3">
+            <h2 class="mb-3">Ваши данные</h2>
+            <div v-for="(line, f) in reg" :key="line">
+              <span v-if="line != null && line != []">{{ f }}: {{ line }}</span>
+            </div>
+            <div class="text-center mt-5">
+              <button @click="closeWindow" class="btn btn-danger me-3">
+                Close
+              </button>
+              <button @click="acceptDialog" class="btn btn-success">
+                Acept
+              </button>
+            </div>
+          </div>
+        </div>
+      </template>
+    </dialog-window>
   </div>
 </template>
 
 <script>
 import myInput from "../components/ui/myInput.vue";
-import myDialog from "../components/ui/regDialog.vue";
-import { users } from "../App.vue";
+import DialogWindow from "@/components/ui/dialogWindow";
 
 export default {
   name: "Registration",
   components: {
     myInput,
-    myDialog,
+    DialogWindow,
   },
-  props: {},
   data() {
     return {
-      users,
-
       dialogVisible: false,
 
       selected: null,
@@ -119,18 +136,23 @@ export default {
       },
     };
   },
+  computed: {
+    users() {
+      return this.$store.state.users;
+    },
+  },
   methods: {
     closeWindow() {
       this.dialogVisible = false;
     },
     doReg() {
-      users.push({
-        id: users.length,
+      this.users.push({
+        id: this.users.length,
         name: this.reg.userName,
         email: this.reg.userEmail,
         password: this.reg.userPassword,
       });
-      console.log(users);
+      console.log(this.users);
       this.closeWindow();
     },
     returnUserName(value) {

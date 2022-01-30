@@ -1,7 +1,5 @@
 <template>
   <div>
-    <button @click="this.$store.commit('increment', text)">Increment</button>
-    <input type="text" v-model="text">
     <span>{{text}}</span>
     <login-dialog
       :loginDialogVisible="loginDialogVisible"

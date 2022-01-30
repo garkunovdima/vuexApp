@@ -12,18 +12,23 @@
       <div class="profile_description">{{ profile_description }}</div>
     </div>
     <div class="profile_users_posts col-8">
-      <feed :data='myPosts'></feed>
+      <dialog-window>
+        <template #fff> asd</template>
+      </dialog-window>
+      <feed :data="myPosts"></feed>
     </div>
   </div>
 </template>
 
 <script>
-import feed from "@/components/feed.vue";
+import feed from "@/components/feed";
+import DialogWindow from "@/components/ui/dialogWindow";
 
 export default {
-  name: "Home",
+  name: "Profile",
   components: {
     feed,
+    DialogWindow,
   },
   data() {
     return {
@@ -34,14 +39,13 @@ export default {
       imageLink: "@/assets/logo.png",
     };
   },
-  computed:{
-    myPosts(){
-      return this.posts.filter(item=>item.my_post);
+  computed: {
+    myPosts() {
+      return this.posts.filter((item) => item.my_post);
     },
-    posts(){
-      
+    posts() {
       return this.$store.state.posts;
-    }
+    },
   },
   methods: {
     is_my_post: function (post) {
@@ -53,7 +57,7 @@ export default {
 </script>
 
 <style scoped>
-.profile_info{
-   align-self: flex-start;
+.profile_info {
+  align-self: flex-start;
 }
 </style>

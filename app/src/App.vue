@@ -32,82 +32,14 @@
 </template>
 
 <script>
-export const posts = {
-  post0: {
-    id: 0,
-    author: "Alex Parker",
-    date: "November 23, 2016",
-    header:
-      "How to make your company website based on bootstram framework on localhost?",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero ante, varius in nisl at, convallis sollicitudin nibh. Nunc in leo eget purus cursus accumsan. Aenean laoreet ultricies enim, sit amet suscipit ipsum dignissim quis. Nulla vehicula urna vitae mauris euismod commodo. Duis iaculis, velit in iaculis fringilla, mauris risus cursus leo, ut tincidunt lectus eros non ex. Aliquam erat volutpat. Suspendisse lacinia, orci quis feugiat finibus, velit ante varius eros, at congue justo ipsum at orci. Praesent condimentum tellus non lorem maximus feugiat.",
-    my_post: false,
-    liked: false,
-    saved: false,
-  },
-  post1: {
-    id: 1,
-    author: "Alex",
-    header:
-      "How to make your company website based on bootstram framework on localhost?",
-    date: "24-01-2022",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero ante, varius in nisl at, convallis sollicitudin nibh. Nunc in leo eget purus cursus accumsan. Aenean laoreet ultricies enim, sit amet suscipit ipsum dignissim quis. Nulla vehicula urna vitae mauris euismod commodo. Duis iaculis, velit in iaculis fringilla, mauris risus cursus leo, ut tincidunt lectus eros non ex. Aliquam erat volutpat. Suspendisse lacinia, orci quis feugiat finibus, velit ante varius eros, at congue justo ipsum at orci. Praesent condimentum tellus non lorem maximus feugiat.",
-    my_post: false,
-    liked: true,
-    saved: true,
-  },
-  post2: {
-    id: 2,
-    author: "Bert",
-    header:
-      "How to make your company website based on bootstram framework on localhost?",
-    date: "24-01-2022",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero ante, varius in nisl at, convallis sollicitudin nibh. Nunc in leo eget purus cursus accumsan. Aenean laoreet ultricies enim, sit amet suscipit ipsum dignissim quis. Nulla vehicula urna vitae mauris euismod commodo. Duis iaculis, velit in iaculis fringilla, mauris risus cursus leo, ut tincidunt lectus eros non ex. Aliquam erat volutpat. Suspendisse lacinia, orci quis feugiat finibus, velit ante varius eros, at congue justo ipsum at orci. Praesent condimentum tellus non lorem maximus feugiat.",
-    my_post: true,
-    liked: true,
-    saved: true,
-  },
-  post3: {
-    id: 3,
-    author: "Hush",
-    header:
-      "How to make your company website based on bootstram framework on localhost?",
-    date: "24-01-2022",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero ante, varius in nisl at, convallis sollicitudin nibh. Nunc in leo eget purus cursus accumsan. Aenean laoreet ultricies enim, sit amet suscipit ipsum dignissim quis. Nulla vehicula urna vitae mauris euismod commodo. Duis iaculis, velit in iaculis fringilla, mauris risus cursus leo, ut tincidunt lectus eros non ex. Aliquam erat volutpat. Suspendisse lacinia, orci quis feugiat finibus, velit ante varius eros, at congue justo ipsum at orci. Praesent condimentum tellus non lorem maximus feugiat.",
-    my_post: false,
-    liked: false,
-    saved: false,
-  },
-};
-export const users = [
-  {
-    id: 0,
-    name: "Vlad",
-    email: "vlad@gmail.com",
-    password: "0000",
-    sex: "male",
-  },
-  {
-    id: 1,
-    name: "Lena",
-    email: "lena@gmail.com",
-    password: "0000",
-    sex: "female",
-  },
-  {
-    id: 2,
-    name: "Grisha",
-    email: "grisha@gmail.com",
-    password: "0000",
-    sex: "male",
-  },
-];
+
 
 export default {
   name: "App",
   components: {},
   data() {
     return {
-      posts,
+      
     };
   },
 };
