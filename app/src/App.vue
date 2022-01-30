@@ -121,9 +121,6 @@ body {
   background: #e8e8e8;
 }
 
-#app {
-  /* color: #2c3e50; */
-}
 * {
   font-family: "Noto Sans", sans-serif;
   color: #35495e;

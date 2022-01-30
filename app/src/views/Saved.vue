@@ -1,10 +1,6 @@
 <template>
   <div>
-    <feed
-    :rule="feed_rule"
-    >
-      
-    </feed>
+    <feed></feed>
   </div>
 </template>
 
@@ -21,7 +17,6 @@ export default {
   },
   data (){
     return {
-      feed_rule: "true",
     }
   }
   

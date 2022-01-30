@@ -12,7 +12,7 @@
       <div class="profile_description">{{ profile_description }}</div>
     </div>
     <div class="profile_users_posts col-8">
-      <feed :rule="feed_rule"></feed>
+      <feed :data='myPosts'></feed>
     </div>
   </div>
 </template>
@@ -27,12 +27,21 @@ export default {
   },
   data() {
     return {
-      profile_name: "Adam Savage",
+      profile_name: "Harkunov Dmytro",
       profile_photo_path: "",
       profile_description: "Profile description",
       feed_rule: true,
       imageLink: "@/assets/logo.png",
     };
+  },
+  computed:{
+    myPosts(){
+      return this.posts.filter(item=>item.my_post);
+    },
+    posts(){
+      
+      return this.$store.state.posts;
+    }
   },
   methods: {
     is_my_post: function (post) {

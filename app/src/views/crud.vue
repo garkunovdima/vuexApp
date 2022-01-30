@@ -60,52 +60,6 @@ export default {
   },
   data() {
     return {
-      posts: [
-        {
-          id: 0,
-          author: "Alex Parker",
-          date: "November 23, 2016",
-          header:
-            "How to make your company website based on bootstram framework on localhost?",
-          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero ante, varius in nisl at, convallis sollicitudin nibh. Nunc in leo eget purus cursus accumsan. Aenean laoreet ultricies enim, sit amet suscipit ipsum dignissim quis. Nulla vehicula urna vitae mauris euismod commodo. Duis iaculis, velit in iaculis fringilla, mauris risus cursus leo, ut tincidunt lectus eros non ex. Aliquam erat volutpat. Suspendisse lacinia, orci quis feugiat finibus, velit ante varius eros, at congue justo ipsum at orci. Praesent condimentum tellus non lorem maximus feugiat.",
-          my_post: false,
-          liked: false,
-          saved: false,
-        },
-        {
-          id: 1,
-          author: "Alex",
-          header:
-            "How to make your company website based on bootstram framework on localhost?",
-          date: "24-01-2022",
-          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero ante, varius in nisl at, convallis sollicitudin nibh. Nunc in leo eget purus cursus accumsan. Aenean laoreet ultricies enim, sit amet suscipit ipsum dignissim quis. Nulla vehicula urna vitae mauris euismod commodo. Duis iaculis, velit in iaculis fringilla, mauris risus cursus leo, ut tincidunt lectus eros non ex. Aliquam erat volutpat. Suspendisse lacinia, orci quis feugiat finibus, velit ante varius eros, at congue justo ipsum at orci. Praesent condimentum tellus non lorem maximus feugiat.",
-          my_post: false,
-          liked: true,
-          saved: true,
-        },
-        {
-          id: 2,
-          author: "Bert",
-          header:
-            "How to make your company website based on bootstram framework on localhost?",
-          date: "24-01-2022",
-          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero ante, varius in nisl at, convallis sollicitudin nibh. Nunc in leo eget purus cursus accumsan. Aenean laoreet ultricies enim, sit amet suscipit ipsum dignissim quis. Nulla vehicula urna vitae mauris euismod commodo. Duis iaculis, velit in iaculis fringilla, mauris risus cursus leo, ut tincidunt lectus eros non ex. Aliquam erat volutpat. Suspendisse lacinia, orci quis feugiat finibus, velit ante varius eros, at congue justo ipsum at orci. Praesent condimentum tellus non lorem maximus feugiat.",
-          my_post: true,
-          liked: true,
-          saved: true,
-        },
-        {
-          id: 3,
-          author: "Hush",
-          header:
-            "How to make your company website based on bootstram framework on localhost?",
-          date: "24-01-2022",
-          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero ante, varius in nisl at, convallis sollicitudin nibh. Nunc in leo eget purus cursus accumsan. Aenean laoreet ultricies enim, sit amet suscipit ipsum dignissim quis. Nulla vehicula urna vitae mauris euismod commodo. Duis iaculis, velit in iaculis fringilla, mauris risus cursus leo, ut tincidunt lectus eros non ex. Aliquam erat volutpat. Suspendisse lacinia, orci quis feugiat finibus, velit ante varius eros, at congue justo ipsum at orci. Praesent condimentum tellus non lorem maximus feugiat.",
-          my_post: false,
-          liked: false,
-          saved: false,
-        },
-      ],
       editedPostId: null,
       editedPostText: "",
       editedPostHeader: "",
@@ -116,6 +70,9 @@ export default {
       let date = new Date().toLocaleDateString();
       return date;
     },
+    posts(){
+      return this.$store.state.posts;
+    }
   },
   methods: {
     sendId(id, text, header) {
@@ -133,7 +90,7 @@ export default {
       } else if (this.editedPostId != null) {
         alert("Сначала сохраните изменения.");
       } else {
-        this.posts.push({
+        this.$store.commit('addPost',{
           id: this.posts[this.posts.length - 1].id + 1,
           header: this.editedPostHeader,
           text: this.editedPostText,
@@ -143,6 +100,7 @@ export default {
           liked: false,
           saved: false,
         });
+
         console.log("New post created.");
         this.clearFields();
       }
@@ -157,17 +115,14 @@ export default {
       ) {
         this.posts.forEach((post) => {
           if (post.id == this.editedPostId && this.editedPostId != null) {
-            this.posts.splice(id, 1);
             deletedId = id;
+            this.$store.commit('deletePost', deletedId);
           }
           id++;
         });
         console.log(`The post with id:${this.editedPostId} was deleted.`);
       } else if (this.posts.length > 0) {
-        this.posts.pop();
-        console.log(
-          `The last published post with id:${deletedId} was deleted.`
-        );
+        this.$store.commit('deletePost', deletedId);
       } else {
         console.log("there is no more posts :'(");
       }

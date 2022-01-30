@@ -1,7 +1,13 @@
 <template>
   <div>
-    <login-dialog :loginDialogVisible="loginDialogVisible" @closeLogin="closeWindow"></login-dialog>
-    <feed :rule="feed_rule"></feed>
+    <button @click="this.$store.commit('increment', text)">Increment</button>
+    <input type="text" v-model="text">
+    <span>{{text}}</span>
+    <login-dialog
+      :loginDialogVisible="loginDialogVisible"
+      @closeLogin="closeWindow"
+    ></login-dialog>
+    <feed></feed>
   </div>
 </template>
 
@@ -17,15 +23,14 @@ export default {
   },
   data() {
     return {
-      feed_rule: true,
+      text:'',
       loginDialogVisible: true,
-
     };
   },
-  methods:{
+  methods: {
     closeWindow() {
       this.loginDialogVisible = false;
     },
-  }
+  },
 };
 </script>
