@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 import Home from '../views/Home.vue'
 import Saved from '../views/Saved.vue'
-import Profile from '../views/Profile.vue'
+import profilePage from '../views/profilePage.vue'
 import Registration from '../views/Registration.vue'
 import Tests from '../views/Tests.vue'
 import CRUD from '../views/crud.vue'
@@ -18,9 +18,9 @@ const routes = [{
         component: Saved
     },
     {
-        path: '/profile',
-        name: 'Profile',
-        component: Profile
+        path: '/profile/:id',
+        name: profilePage,
+        component: profilePage
     },
     {
         path: '/reg',

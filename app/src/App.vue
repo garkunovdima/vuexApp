@@ -20,7 +20,7 @@
         <router-link to="/">Home</router-link>
         <router-link to="/crud">CRUD</router-link>
         <router-link to="/saved">Saved posts</router-link>
-        <router-link to="/profile">My Profile</router-link>
+        <router-link :to="profileLink">My Profile</router-link>
         <router-link to="/reg">Registration</router-link>
         <router-link to="/tests">Tests</router-link>
       </div>
@@ -36,12 +36,11 @@
 
 export default {
   name: "App",
-  components: {},
-  data() {
-    return {
-      
-    };
-  },
+  computed:{
+    profileLink(){
+      return '/profile/'+this.$store.state.auth.link;
+    }
+  }
 };
 </script>
 

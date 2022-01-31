@@ -5,7 +5,9 @@
       <span>{{ post.date }}</span
       >/
       <span
-        >by <a href="#">{{ post.author }}</a></span
+        >by 
+        <router-link :to='authorLink'><a>{{ post.author }}</a></router-link>
+        </span
       >
     </div>
     <div class="post_text my-2">
@@ -193,6 +195,11 @@ export default {
       saved: false,
     };
   },
+  computed:{
+     authorLink() {
+      return "/profile/" + this.post.authorLink;
+    },
+  }
 };
 </script>
 
