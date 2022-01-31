@@ -9,7 +9,7 @@
       <h2>Search results:</h2>
       <div>
         <h3>Users:</h3>
-        <div v-show="true" class="my-3">
+        <div v-show="searchText" class="my-3">
           <div v-for="user in usersList" :key="user">
             <router-link :to="userLink(user)" class="post-shadow row">
               <div class="col-1 border">
@@ -32,7 +32,7 @@
       </div>
       <div>
         <h3>Posts</h3>
-        <div v-show="true">
+        <div v-show="searchText">
           <div v-for="post in postsList" :key="post">
             <post :post="post"></post>
           </div>
