@@ -7,7 +7,7 @@
             <div>{{ profileInfo.name }}</div>
           </div>
           <div class="profile_photo">
-            <img src="@/assets/logo.png" alt="profile_photo" />
+            <img :src="avasrc(profileInfo)" alt="profile_photo" />
           </div>
         </div>
         <div class="profile_description">{{ profileInfo.email }}</div>
@@ -56,5 +56,12 @@ export default {
       return this.$store.state.users;
     },
   },
+  methods: {
+    avasrc(user) {
+        console.log(user.name);
+      if (user.ava) return require("@/assets/" + user.ava + ".jpg");
+      else return require('@/assets/ava.jpg');
+    },
+  }
 };
 </script>

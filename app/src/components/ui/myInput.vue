@@ -31,9 +31,7 @@ export default {
     value(){this.text = this.value}
   },
   methods: {
-    returnValue(val) {
-      console.log("val", val);
-      console.log("returnValue", this.text);
+    returnValue() {
       this.$emit("returnInput", this.text);
     },
   },

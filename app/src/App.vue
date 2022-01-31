@@ -19,6 +19,7 @@
         /></router-link>
         <router-link to="/">Home</router-link>
         <router-link to="/crud">CRUD</router-link>
+        <router-link to="/search">Search</router-link>
         <router-link to="/saved">Saved posts</router-link>
         <router-link :to="profileLink">My Profile</router-link>
       </div>

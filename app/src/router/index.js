@@ -6,6 +6,7 @@ import SavedList from '../views/savedList.vue'
 import profilePage from '../views/profilePage.vue'
 import Registration from '../views/Registration.vue'
 import CRUD from '../views/crud.vue'
+import SearchPage from '../views/searchPage.vue'
 
 const routes = [{
         path: '/',
@@ -36,6 +37,11 @@ const routes = [{
         path: '/crud',
         name: 'CRUD',
         component: CRUD
+    },
+    {
+        path: '/search',
+        name: 'search',
+        component: SearchPage
     },
 
 ]

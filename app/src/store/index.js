@@ -13,6 +13,7 @@ export default createStore({
                 email: "hd@gmail.com",
                 password: "0000",
                 sex: "male",
+                ava: 'harkunovdmytro',
                 lists: [
                     { name: "myList1", posts: [0, 1, 4] },
                     { name: "myList2", posts: [1, 2, 3] },
