@@ -2,9 +2,9 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 import Home from '../views/Home.vue'
 import Saved from '../views/Saved.vue'
+import SavedList from '../views/savedList.vue'
 import profilePage from '../views/profilePage.vue'
 import Registration from '../views/Registration.vue'
-import Tests from '../views/Tests.vue'
 import CRUD from '../views/crud.vue'
 
 const routes = [{
@@ -18,6 +18,11 @@ const routes = [{
         component: Saved
     },
     {
+        path: '/saved/:id/:listid',
+        name: SavedList,
+        component: SavedList
+    },
+    {
         path: '/profile/:id',
         name: profilePage,
         component: profilePage
@@ -26,11 +31,6 @@ const routes = [{
         path: '/reg',
         name: 'Registration',
         component: Registration
-    },
-    {
-        path: '/tests',
-        name: 'Tests',
-        component: Tests
     },
     {
         path: '/crud',

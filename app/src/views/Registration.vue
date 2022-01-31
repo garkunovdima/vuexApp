@@ -4,24 +4,32 @@
       <h1 class="m-4">Регистрация</h1>
       <div class="row">
         <div class="col-4">
-          <my-input
-            placeholder="Имя пользователя"
-            @returnInput="returnUserName"
-          ></my-input>
-          <my-input
-            placeholder="Адрес электронной почты"
-            @returnInput="returnUserEmail"
-          ></my-input>
-          <my-input
-            :placeholder="passwordPlaceholder"
-            :inputType="passwordInput"
-            @returnInput="returnUserPassword"
-          ></my-input>
-          <my-input
-            :placeholder="passwordPlaceholder"
-            :inputType="passwordInput"
-            @returnInput="returnUserPasswordRepeat"
-          ></my-input>
+          <div class="my-3">
+            <my-input
+              placeholder="Имя пользователя"
+              @returnInput="returnUserName"
+            ></my-input>
+          </div>
+          <div class="my-3">
+            <my-input
+              placeholder="Адрес электронной почты"
+              @returnInput="returnUserEmail"
+            ></my-input>
+          </div>
+          <div class="my-3">
+            <my-input
+              :placeholder="passwordPlaceholder"
+              :inputType="passwordInput"
+              @returnInput="returnUserPassword"
+            ></my-input>
+          </div>
+          <div class="my-3">
+            <my-input
+              :placeholder="passwordPlaceholder"
+              :inputType="passwordInput"
+              @returnInput="returnUserPasswordRepeat"
+            ></my-input>
+          </div>
         </div>
         <div class="col-4">
           <div>
@@ -96,9 +104,7 @@
               <button @click="closeWindow" class="btn btn-danger me-3">
                 Close
               </button>
-              <button @click="acceptDialog" class="btn btn-success">
-                Acept
-              </button>
+              <button @click="doReg" class="btn btn-success">Acept</button>
             </div>
           </div>
         </div>
@@ -146,11 +152,13 @@ export default {
       this.dialogVisible = false;
     },
     doReg() {
-      this.users.push({
+      this.$store.commit("addUser", {
         id: this.users.length,
         name: this.reg.userName,
+        link: this.reg.userName.toLowerCase().replace(/\s/g, ''),
         email: this.reg.userEmail,
         password: this.reg.userPassword,
+        lists: [],
       });
       console.log(this.users);
       this.closeWindow();

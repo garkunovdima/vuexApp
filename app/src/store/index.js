@@ -14,7 +14,9 @@ export default createStore({
                 password: "0000",
                 sex: "male",
                 lists: [
-
+                    { name: "myList1", posts: [0, 1, 4] },
+                    { name: "myList2", posts: [1, 2, 3] },
+                    { name: "myList3", posts: [4, 2, 1] },
                 ]
             },
             {
@@ -47,7 +49,7 @@ export default createStore({
                 author: "Harkunov Dmytro",
                 authorLink: "harkunovdmytro",
                 date: "November 23, 2016",
-                header: "How to make your company website based on bootstram framework on localhost?",
+                header: "0How to make your company website based on bootstram framework on localhost?",
                 text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero ante, varius in nisl at, convallis sollicitudin nibh. Nunc in leo eget purus cursus accumsan. Aenean laoreet ultricies enim, sit amet suscipit ipsum dignissim quis. Nulla vehicula urna vitae mauris euismod commodo. Duis iaculis, velit in iaculis fringilla, mauris risus cursus leo, ut tincidunt lectus eros non ex. Aliquam erat volutpat. Suspendisse lacinia, orci quis feugiat finibus, velit ante varius eros, at congue justo ipsum at orci. Praesent condimentum tellus non lorem maximus feugiat.",
                 my_post: true,
                 liked: false,
@@ -57,7 +59,7 @@ export default createStore({
                 id: 1,
                 author: "Grisha",
                 authorLink: "grisha",
-                header: "How to make your company website based on bootstram framework on localhost?",
+                header: "1How to make your company website based on bootstram framework on localhost?",
                 date: "24-01-2022",
                 text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero ante, varius in nisl at, convallis sollicitudin nibh. Nunc in leo eget purus cursus accumsan. Aenean laoreet ultricies enim, sit amet suscipit ipsum dignissim quis. Nulla vehicula urna vitae mauris euismod commodo. Duis iaculis, velit in iaculis fringilla, mauris risus cursus leo, ut tincidunt lectus eros non ex. Aliquam erat volutpat. Suspendisse lacinia, orci quis feugiat finibus, velit ante varius eros, at congue justo ipsum at orci. Praesent condimentum tellus non lorem maximus feugiat.",
                 my_post: false,
@@ -68,7 +70,7 @@ export default createStore({
                 id: 2,
                 author: "Bert",
                 authorLink: "bert",
-                header: "How to make your company website based on bootstram framework on localhost?",
+                header: "2How to make your company website based on bootstram framework on localhost?",
                 date: "24-01-2022",
                 text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero ante, varius in nisl at, convallis sollicitudin nibh. Nunc in leo eget purus cursus accumsan. Aenean laoreet ultricies enim, sit amet suscipit ipsum dignissim quis. Nulla vehicula urna vitae mauris euismod commodo. Duis iaculis, velit in iaculis fringilla, mauris risus cursus leo, ut tincidunt lectus eros non ex. Aliquam erat volutpat. Suspendisse lacinia, orci quis feugiat finibus, velit ante varius eros, at congue justo ipsum at orci. Praesent condimentum tellus non lorem maximus feugiat.",
                 my_post: true,
@@ -79,7 +81,7 @@ export default createStore({
                 id: 3,
                 author: "Alex",
                 authorLink: "alex",
-                header: "How to make your company website based on bootstram framework on localhost?",
+                header: "3How to make your company website based on bootstram framework on localhost?",
                 date: "24-01-2022",
                 text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero ante, varius in nisl at, convallis sollicitudin nibh. Nunc in leo eget purus cursus accumsan. Aenean laoreet ultricies enim, sit amet suscipit ipsum dignissim quis. Nulla vehicula urna vitae mauris euismod commodo. Duis iaculis, velit in iaculis fringilla, mauris risus cursus leo, ut tincidunt lectus eros non ex. Aliquam erat volutpat. Suspendisse lacinia, orci quis feugiat finibus, velit ante varius eros, at congue justo ipsum at orci. Praesent condimentum tellus non lorem maximus feugiat.",
                 my_post: false,
@@ -90,7 +92,7 @@ export default createStore({
                 id: 4,
                 author: "Harkunov Dmytro",
                 authorLink: "harkunovdmytro",
-                header: "How to make your company website based on bootstram framework on localhost?",
+                header: "4How to make your company website based on bootstram framework on localhost?",
                 date: "24-01-2022",
                 text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec libero ante, varius in nisl at, convallis sollicitudin nibh. Nunc in leo eget purus cursus accumsan. Aenean laoreet ultricies enim, sit amet suscipit ipsum dignissim quis. Nulla vehicula urna vitae mauris euismod commodo. Duis iaculis, velit in iaculis fringilla, mauris risus cursus leo, ut tincidunt lectus eros non ex. Aliquam erat volutpat. Suspendisse lacinia, orci quis feugiat finibus, velit ante varius eros, at congue justo ipsum at orci. Praesent condimentum tellus non lorem maximus feugiat.",
                 my_post: false,
@@ -109,7 +111,13 @@ export default createStore({
             console.log(`adding new post with id ${post.id}`);
             state.posts.push(post);
             console.log("post added");
-        }
+        },
+        addUser(state, user) {
+            console.log(`adding new user with name ${user.name}`);
+            state.users.push(user);
+            console.log("user added");
+        },
+
     },
     actions: {},
     modules: {}

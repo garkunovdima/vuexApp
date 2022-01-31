@@ -1,6 +1,8 @@
 <template>
   <div>
-    <span>{{text}}</span>
+    
+        <router-link to="/reg"><button>Registration</button></router-link>
+        <button @click="loginDialogVisible = true">Auth</button>
     <login-dialog
       :loginDialogVisible="loginDialogVisible"
       @closeLogin="closeWindow"
@@ -22,7 +24,7 @@ export default {
   data() {
     return {
       text:'',
-      loginDialogVisible: true,
+      loginDialogVisible: false,
     };
   },
   methods: {
