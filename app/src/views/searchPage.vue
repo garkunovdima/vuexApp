@@ -75,14 +75,8 @@ export default {
       return this.$store.state.posts;
     },
   },
-  watch: {
-    searchText() {
-      console.log("changed");
-    },
-  },
   methods: {
     avasrc(user) {
-        console.log(user.name);
       if (user.ava) return require("@/assets/" + user.ava + ".jpg");
       else return require('@/assets/ava.jpg');
     },
