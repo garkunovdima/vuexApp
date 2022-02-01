@@ -1,15 +1,15 @@
 <template>
   <div class="post-shadow">
     <h1 class="text-center">Search</h1>
-    <div class="text-center">
+    <div class="text-center my-5">
       <my-input placeholder="Let's find..." v-model="searchText"></my-input>
       <div>{{ searchText }}</div>
     </div>
-    <div class="p-5">
+    <div v-show="searchText" class="p-5">
       <h2>Search results:</h2>
       <div>
         <h3>Users:</h3>
-        <div v-show="searchText" class="my-3">
+        <div class="my-3">
           <div v-for="user in usersList" :key="user">
             <router-link :to="userLink(user)" class="post-shadow row">
               <div class="col-1 border">
@@ -32,7 +32,7 @@
       </div>
       <div>
         <h3>Posts</h3>
-        <div v-show="searchText">
+        <div>
           <div v-for="post in postsList" :key="post">
             <post :post="post"></post>
           </div>
@@ -69,6 +69,8 @@ export default {
     postsList() {
       return this.posts.filter((post) =>
         post.header.toLowerCase().includes(this.searchText.toLowerCase())
+        ||post.author.toLowerCase().includes(this.searchText.toLowerCase())
+        ||post.text.toLowerCase().includes(this.searchText.toLowerCase())
       );
     },
     posts() {

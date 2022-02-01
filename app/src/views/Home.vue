@@ -1,8 +1,8 @@
 <template>
   <div>
-    
-        <router-link to="/reg"><button>Registration</button></router-link>
-        <button @click="loginDialogVisible = true">Auth</button>
+    <div>{{user}}</div>
+    <router-link to="/reg"><button>Registration</button></router-link>
+    <button @click="loginDialogVisible = true">Auth</button>
     <login-dialog
       :loginDialogVisible="loginDialogVisible"
       @closeLogin="closeWindow"
@@ -23,9 +23,15 @@ export default {
   },
   data() {
     return {
-      text:'',
+      text: "",
       loginDialogVisible: false,
     };
+  },
+  computed:{
+    user(){
+      console.log(this.$store.state.Users.user);
+      return this.$store.state.Users.user
+    }
   },
   methods: {
     closeWindow() {

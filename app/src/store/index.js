@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import Users from './users/index.js'
 
 export default createStore({
     state: {
@@ -100,8 +101,9 @@ export default createStore({
                 liked: false,
                 saved: false,
             },
-        ]
+        ],
     },
+
     mutations: {
         deletePost(state, id) {
             console.log(`state.posts.splice(${id}, 1); post deleted`, state.posts[id]);
@@ -118,8 +120,7 @@ export default createStore({
             state.users.push(user);
             console.log("user added");
         },
-
     },
     actions: {},
-    modules: {}
+    modules: { Users }
 })

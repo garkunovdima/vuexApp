@@ -152,15 +152,17 @@ export default {
       this.dialogVisible = false;
     },
     doReg() {
-      this.$store.commit("addUser", {
-        id: this.users.length,
-        name: this.reg.userName,
-        link: this.reg.userName.toLowerCase().replace(/\s/g, ''),
-        email: this.reg.userEmail,
-        password: this.reg.userPassword,
-        lists: [],
-      });
-      console.log(this.users);
+      let data = { email: this.reg.userEmail, password: this.reg.userPassword };
+      this.$store.dispatch("signIn", data);
+      // this.$store.commit("addUser", {
+      //   id: this.users.length,
+      //   name: this.reg.userName,
+      //   link: this.reg.userName.toLowerCase().replace(/\s/g, ""),
+      //   email: this.reg.userEmail,
+      //   password: this.reg.userPassword,
+      //   lists: [],
+      // });
+      // console.log(this.users);
       this.closeWindow();
     },
     returnUserName(value) {
