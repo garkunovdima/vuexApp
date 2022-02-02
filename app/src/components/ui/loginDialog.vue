@@ -16,10 +16,21 @@
           <legend>Авторизация</legend>
           <div class="text-center my-2">
             <div class="mb-2">
-              <my-input placeholder="Логин"></my-input>
+              <div class="m-2">azWYU1lDNuW0J5OANjiJzUuWdvj1</div>
+              <div class="m-2">t@mail.ru</div>
+              <div class="m-2">000000</div>
+              <my-input
+                placeholder="Логин"
+                type="email"
+                @returnInput="getEmail"
+              ></my-input>
             </div>
             <div>
-              <my-input placeholder="Пароль"></my-input>
+              <my-input
+                placeholder="Пароль"
+                type="password"
+                @returnInput="getPassword"
+              ></my-input>
             </div>
           </div>
           <div class="d-flex justify-content-evenly">
@@ -45,22 +56,38 @@ export default {
   },
   components: { myInput },
   data() {
-    return {  };
+    return { email: "", password: "" };
   },
-  computed:{
-    users(){
+  computed: {
+    users() {
       return this.$store.state.users;
-    }
+    },
   },
   methods: {
+    getEmail(data) {
+      console.log("email", data);
+      return (this.email = data);
+    },
+    getPassword(data) {
+      console.log("password", data);
+      return (this.password = data);
+    },
     closeWindow() {
-      console.log("closeLogin");
       this.$emit("closeLogin");
     },
     acceptDialog() {
-      console.log("acceptLoginDialog");
+      console.log("sending user data: ", {
+        email: this.email,
+        password: this.password,
+      });
+
+      this.$store.dispatch("login", {
+        email: this.email,
+        password: this.password,
+      });
+
       this.$emit("acceptLoginDialog");
-      this.closeWindow();
+      //this.closeWindow();
     },
   },
 };
