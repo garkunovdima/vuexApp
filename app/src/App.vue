@@ -21,25 +21,77 @@
         <router-link to="/crud">CRUD</router-link>
         <router-link to="/search">Search</router-link>
         <router-link to="/saved">Saved posts</router-link>
-        <router-link :to="profileLink">My Profile</router-link>
+        <router-link
+          v-show="isAuth"
+          :to="{
+            path: `${'/profile/' + profileInfo.profileLink}`,
+          }"
+          >My Profile</router-link
+        >
+        <div class="userInfo">
+          <div v-show="isAuth">
+            <div>
+              <span>Welcome, </span>
+              <span
+                ><b class="me-2">{{ profileInfo.email }} </b></span
+              >
+              <button @click="logout">logout</button>
+            </div>
+          </div>
+          <div v-show="!isAuth">
+            <router-link to="/reg"><button>Registration</button></router-link>
+            <button @click="loginDialogVisible = true">Auth</button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="container-lg my-5">
       <router-view />
+      <div>
+        <login-dialog
+          :loginDialogVisible="loginDialogVisible"
+          @closeLogin="closeWindow"
+        ></login-dialog>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-
+import loginDialog from "@/components/ui/loginDialog.vue";
 
 export default {
   name: "App",
-  computed:{
-    profileLink(){
-      return '/profile/'+this.$store.state.auth.link;
-    }
-  }
+  components: {
+    loginDialog,
+  },
+  data() {
+    return {
+      loginDialogVisible: false,
+    };
+  },
+  computed: {
+    isAuth() {
+      return this.$store.getters["user/isAuth"];
+    },
+    profileInfo() {
+      return {
+        name: this.$store.state.user.name,
+        email: this.$store.state.user.email,
+        uid: this.$store.state.user.uid,
+        authState: this.$store.state.user.authState,
+        profileLink: this.$store.state.user.profileLink,
+      };
+    },
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("user/logOut");
+    },
+    closeWindow() {
+      this.loginDialogVisible = false;
+    },
+  },
 };
 </script>
 

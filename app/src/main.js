@@ -3,17 +3,17 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-//import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// firebase import
+import { initializeApp } from 'firebase/app';
+import { getDatabase, ref, onValue } from "firebase/database";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+// import { getDatabase } from "firebase/database";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// firebase configuration rules
 const firebaseConfig = {
     apiKey: "AIzaSyC1IpFwhpgHk6Aaq3GQJWzPLbmi-JoLiTM",
     authDomain: "harkunov-88060.firebaseapp.com",
+    databaseURL: "https://harkunov-88060-default-rtdb.asia-southeast1.firebasedatabase.app/",
     projectId: "harkunov-88060",
     storageBucket: "harkunov-88060.appspot.com",
     messagingSenderId: "827265746885",
@@ -21,14 +21,31 @@ const firebaseConfig = {
     measurementId: "G-0KD89ZK2WD"
 };
 
-const fb = initializeApp(firebaseConfig);
-// Initialize Firebase
-//const app = initializeApp(firebaseConfig);
-//const analytics = getAnalytics(app);
+// Initialize Firebase, Firebase auth, Firebase realtime database
+initializeApp(firebaseConfig);
 
+const db = getDatabase();
+const auth = getAuth();
+
+const path = '/posts';
+onValue(ref(db, path), (snapshot) => {
+    store.commit('posts/clear');
+    const postsObject = snapshot.val();
+    for (const [key, value] of Object.entries(postsObject)) {
+        store.commit('posts/addPost', value, key);
+    }
+});
+
+onAuthStateChanged(auth, (user) => {
+    if (user) store.commit('user/setUser', user);
+    else store.dispatch('user/logout');
+})
+
+
+
+// Initialize vue application stuff
 const app = createApp(App);
 app.use(store);
 app.use(router);
-app.use(fb);
 
 app.mount('#app');

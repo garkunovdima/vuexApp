@@ -14,11 +14,11 @@ export default {
   components: {
     post,
   },
-  props: {data: { type: Array } },
+  props: { data: { type: Array } },
   computed: {
     posts() {
       if (this.data) return this.data;
-      else return this.$store.state.posts;
+      else return this.$store.getters["posts/posts"];
     },
   },
 };

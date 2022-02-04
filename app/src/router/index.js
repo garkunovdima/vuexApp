@@ -1,5 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
+//import store from '../store'
+
 import Home from '../views/Home.vue'
 import Saved from '../views/Saved.vue'
 import SavedList from '../views/savedList.vue'
@@ -24,6 +26,7 @@ const routes = [{
         component: SavedList
     },
     {
+        //path: store.state.auth ? '/' : `/profile/:id`,
         path: '/profile/:id',
         name: profilePage,
         component: profilePage

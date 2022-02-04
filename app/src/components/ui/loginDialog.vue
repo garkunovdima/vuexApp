@@ -11,7 +11,7 @@
     @click="closeWindow"
   >
     <div @click.stop.self="closeWindow" class="post-shadow px-3 py-3">
-      <form action="">
+      <div >
         <fieldset>
           <legend>Авторизация</legend>
           <div class="text-center my-2">
@@ -36,11 +36,13 @@
           <div class="d-flex justify-content-evenly">
             <button @click="closeWindow" class="btn btn-danger">Отмена</button>
             <button @click="acceptDialog" class="btn btn-success">
-              Подтвердить
+              Подтвердить</button
+            ><button @click="AuthStateChanged" class="btn btn-success">
+              AuthStateChanged
             </button>
           </div>
         </fieldset>
-      </form>
+      </div>
     </div>
   </div>
 </template>
@@ -64,6 +66,12 @@ export default {
     },
   },
   methods: {
+    AuthStateChanged() {
+      this.$store.dispatch("AuthStateChanged", {
+        email: this.email,
+        password: this.password,
+      });
+    },
     getEmail(data) {
       console.log("email", data);
       return (this.email = data);
@@ -81,13 +89,13 @@ export default {
         password: this.password,
       });
 
-      this.$store.dispatch("login", {
+      this.$store.dispatch("user/login", {
         email: this.email,
         password: this.password,
       });
 
       this.$emit("acceptLoginDialog");
-      //this.closeWindow();
+      this.closeWindow();
     },
   },
 };

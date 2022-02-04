@@ -27,7 +27,9 @@
       </div>
       <div class="my-2 text-end">
         <button class="btn btn-primary" @click="createPost">Create</button>
-        <button class="ms-2 btn btn-success" @click="savePost">Save</button>
+        <button class="ms-2 btn btn-success" @click="saveAndEditPost">
+          Save
+        </button>
         <button class="ms-2 btn btn-danger" @click="deletePost">Delete</button>
       </div>
     </form>
@@ -70,17 +72,16 @@ export default {
       let date = new Date().toLocaleDateString();
       return date;
     },
-    posts(){
-      return this.$store.state.posts;
-    }
+    posts() {
+      return this.$store.state.posts.posts;
+    },
+    getLength(){return this.$store.state.posts.posts.length}
   },
   methods: {
     sendId(id, text, header) {
-      console.log(id);
       this.editedPostId = id;
       this.editedPostText = text;
       this.editedPostHeader = header;
-      console.log("text", this.editedPostText);
     },
     createPost() {
       if (this.editedPostText == "") {
@@ -90,52 +91,44 @@ export default {
       } else if (this.editedPostId != null) {
         alert("Сначала сохраните изменения.");
       } else {
-        this.$store.commit('addPost',{
-          id: this.posts[this.posts.length - 1].id + 1,
+        this.$store.dispatch("posts/createPost", {
+          id: (new Date()).getTime(),
+          author: this.$store.state.user.profileLink,
           header: this.editedPostHeader,
           text: this.editedPostText,
-          date: this.myDate,
-          author: "me",
-          my_post: true,
-          liked: false,
-          saved: false,
+          date: new Date().toString(),
+          likes: 0,
         });
 
-        console.log("New post created.");
+        console.log("createPost in crud done");
         this.clearFields();
       }
     },
     deletePost() {
-      let id = 0;
-      let deletedId = this.posts.length - 1;
-
       if (
         (this.editedPostId && this.editedPostId != null) ||
         this.editedPostId === 0
       ) {
-        this.posts.forEach((post) => {
-          if (post.id == this.editedPostId && this.editedPostId != null) {
-            deletedId = id;
-            this.$store.commit('deletePost', deletedId);
-          }
-          id++;
-        });
+        this.$store.dispatch("posts/deletePost", this.editedPostId);
         console.log(`The post with id:${this.editedPostId} was deleted.`);
       } else if (this.posts.length > 0) {
-        this.$store.commit('deletePost', deletedId);
+        this.$store.dispatch("posts/deletePost", this.editedPostId);
+        //this.$store.commit("deletePost", deletedId);
       } else {
         console.log("there is no more posts :'(");
       }
       this.clearFields();
     },
-    savePost() {
+    saveAndEditPost() {
       this.posts.forEach((post) => {
         if (post.id == this.editedPostId && this.editedPostId != null) {
-          post.text = this.editedPostText;
-          post.header = this.editedPostHeader;
-
-          this.posts.text = this.editedPostText;
-          this.posts.header = this.editedPostHeader;
+          this.$store.dispatch("posts/updatePost", {
+            id: post.id,
+            author: this.$store.state.user.profileLink,
+            header: this.editedPostHeader,
+            text: this.editedPostText,
+            date: new Date().toString(),
+          });
         }
       });
       if (!this.editedPostId && this.editedPostId == null) {

@@ -59,22 +59,25 @@ export default {
   },
   computed: {
     usersList() {
-      return this.users.filter((user) =>
-        user.name.toLowerCase().includes(this.searchText.toLowerCase())
-      );
+      return 'usersList';
+      // return this.users.filter((user) =>
+      //   user.name.toLowerCase().includes(this.searchText.toLowerCase())
+      // );
     },
     users() {
+      
       return this.$store.state.users;
     },
     postsList() {
       return this.posts.filter((post) =>
-        post.header.toLowerCase().includes(this.searchText.toLowerCase())
-        ||post.author.toLowerCase().includes(this.searchText.toLowerCase())
-        ||post.text.toLowerCase().includes(this.searchText.toLowerCase())
+        // post.header.toLowerCase().includes(this.searchText.toLowerCase())
+        // ||post.author.toLowerCase().includes(this.searchText.toLowerCase())
+        // ||
+        post.text.toLowerCase().includes(this.searchText.toLowerCase())
       );
     },
     posts() {
-      return this.$store.state.posts;
+      return this.$store.getters['posts/posts'];
     },
   },
   methods: {

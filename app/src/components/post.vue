@@ -1,14 +1,19 @@
 <template>
   <div class="post-shadow border mb-3 px-5">
+    <h2 class="my-3 font-weight-bold">{{ post.id }}</h2>
     <h2 class="my-3 font-weight-bold">{{ post.header }}</h2>
     <div class="post_date_autor">
       <span>{{ post.date }}</span
       >/
       <span
-        >by 
-        <router-link :to='authorLink'><a>{{ post.author }}</a></router-link>
-        </span
-      >
+        >by
+        <router-link
+          :to="{
+            path: `${'/profile/' + authorLink}`,
+          }"
+          ><a>{{ post.author }}</a></router-link
+        >
+      </span>
     </div>
     <div class="post_text my-2">
       {{ post.text }}
@@ -180,7 +185,6 @@
           </div>
         </label>
       </div>
-    
     </div>
   </div>
 </template>
@@ -195,11 +199,12 @@ export default {
       saved: false,
     };
   },
-  computed:{
-     authorLink() {
-      return "/profile/" + this.post.authorLink;
+  computed: {
+    authorLink() {
+      console.log('this.post.authorLink', this.post.author);
+      return this.post.author;
     },
-  }
+  },
 };
 </script>
 
